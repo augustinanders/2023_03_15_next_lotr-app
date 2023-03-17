@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { volumes } from "../../lib/data.js";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import StyledSection from "../../components/StyledSection.js";
 
 export default function VolumeDetail() {
   const router = useRouter();
@@ -18,17 +19,24 @@ export default function VolumeDetail() {
       <>
         <h1>{volume.title}</h1>
         <p>{volume.description}</p>
-        <Image src={volume.cover} alt={volume.title} width={140} height={230} />
-        <ul>
-          {volume.books.map((book) => {
-            return (
-              <Fragment key={book.title}>
-                <li>{book.ordinal}</li>
-                <li>{book.title}</li>
-              </Fragment>
-            );
-          })}
-        </ul>
+        <StyledSection background={volume.color}>
+          <Image
+            src={volume.cover}
+            alt={volume.title}
+            width={140}
+            height={230}
+          />
+          <ul>
+            {volume.books.map((book) => {
+              return (
+                <Fragment key={book.title}>
+                  <li>{book.ordinal}</li>
+                  <li>{book.title}</li>
+                </Fragment>
+              );
+            })}
+          </ul>
+        </StyledSection>
 
         <Link href="/volumes">
           <button>All Volumes</button>

@@ -13,7 +13,6 @@ export default function VolumeDetail() {
   const volume = volumes.find(({ slug }) => slug === volumeslug);
   const currentIndex = volumes.indexOf(volume);
 
-  console.log("index", volumes.length);
   if (volume) {
     return (
       <>
@@ -34,15 +33,17 @@ export default function VolumeDetail() {
         <Link href="/volumes">
           <button>All Volumes</button>
         </Link>
-        <Link
-          href={
-            currentIndex > 0
-              ? `/volumes/${volumes[currentIndex - 1].slug}`
-              : `/volumes/${volumes[currentIndex].slug}`
-          }
-        >
-          <button>←</button>
-        </Link>
+        {currentIndex > 0 && (
+          <Link
+            href={
+              currentIndex > 0
+                ? `/volumes/${volumes[currentIndex - 1].slug}`
+                : `/volumes/${volumes[currentIndex].slug}`
+            }
+          >
+            <button>←</button>
+          </Link>
+        )}
         <Link
           href={
             currentIndex < volumes.length - 1
